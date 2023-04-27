@@ -2,8 +2,11 @@ node{
 	stage('checkout'){
         	checkout scm
 	}
-	stage('example'){
+	stage('build'){
 		sh "mvn clean install"
 		sh "ls ./target"
+	}
+	stage('artifactc creation'){
+		archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
 	}
 }
